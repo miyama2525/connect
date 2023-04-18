@@ -1,0 +1,268 @@
+@charset "utf-8";
+ 
+p {
+    font-size:20px;
+    margin:20px;
+    color: #534847;
+    border-color: #CE6D39;
+}
+body{
+    margin:20px auto;
+    width:80%;
+    height: 100%;
+    color:#CE6D39;
+}
+main{
+    background-color: #ffffff;
+}
+input[type="text"]{
+    font-size: 30px;
+}
+input[type="email"]{
+    font-size: 30px;
+}
+input[type="password"]{
+    font-size: 30px;
+}
+.p{
+    font-size:20px;
+    margin:20px;
+    color: #534847;
+    border-color: #CE6D39;
+}
+.flex_div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid#FADAD8;
+    padding: 20px;
+}
+.login_div{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.login{
+    margin: 70px auto;
+    border: 1px solid#FADAD8;
+    border-radius: 8px;
+    max-width: 60%;
+}
+.login_text{
+    border:2px solid #FADAD8;
+    border-radius: 8px;
+    width: auto;
+    padding: 6px;
+}
+.register_div{
+    position: fixed;
+    top:0; 
+    right:0; 
+    text-align:right;
+    margin-right: auto;
+}
+.register_button{
+    margin: 20px;
+    font-size: 18px;
+    color: #CE6D39;
+    background-color: #FADAD8;
+    text-align: center;
+    border:1px solid rgb(206, 111, 59, 0.2);
+    border-radius: 8px;
+    display: block;
+}
+.title{
+    font-size: 22px;
+    border-bottom: 1px solid #534847;
+    font-weight: bold;
+    display: inline-block;
+}
+.button_div{
+    margin-top:40px;
+    height: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.button{
+    margin:20px;
+    font-size: 30px;
+    color: #CE6D39;
+    background-color: #FADAD8;
+    width: 20%;
+    text-align: center;
+    border:2px solid #FADAD8;
+    border-radius: 8px;
+}
+.logo{
+    font-size: 28px;
+    color: #CE6D39;
+}
+.select_box{
+    margin: 20px;
+    border:2px solid #FADAD8;
+    border-radius: 8px;
+}
+.text_box{
+    border:2px solid #FADAD8;
+    border-radius: 8px;
+    margin:0 20px;
+    width: 98%;
+    height: 18em;
+    text-align: inherit;
+}
+.text_title{
+    border:2px solid #FADAD8;
+    border-radius: 8px;
+    width: 98%;
+    margin: 0 20px;
+}
+.send_div{
+    display: flex;
+    justify-content: end;
+    margin-right:20px;
+}
+.send_button{
+    margin: 20px 0 2px 20px;
+    padding: 6px 20px;
+    font-size: 20px;
+    color: #CE6D39;
+    background-color: #FADAD8;
+    text-align: center;
+    border:1px solid rgb(206, 111, 59, 0.2);
+    border-radius: 8px;
+    display: block;
+}
+.ok_button{
+    margin: auto;
+    padding: 6px 20px;
+    font-size: 20px;
+    color: #CE6D39;
+    background-color: #FADAD8;
+    text-align: center;
+    border:1px solid rgb(206, 111, 59, 0.2);
+    border-radius: 8px;
+    display: block;
+}
+table{
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+  
+table th{
+    border: solid 2px #FADAD8;
+    padding: 10px 0;
+    width: 30%;
+}
+  
+table td{
+    border: solid 2px #FADAD8;
+    text-align: center;
+    padding: 10px;
+    width: 30%;
+}
+.table_button{
+    margin: 10px;
+    font-size: 20px;
+    color: #CE6D39;
+    background-color: #FADAD8;
+    text-align: center;
+    border:1px solid rgb(206, 111, 59, 0.2);
+    border-radius: 8px;
+    display: block;
+}
+.profile{
+    padding: 2rem;
+    width: 95%;
+    margin: 0 auto;
+}
+/* #D09E88 */
+/* #FADAD8 */
+/* #534847 */
+/* #9B8281 */
+
+@media (max-width: 640px) {
+    /* #css{ スマホ向け }  */
+    .logo{
+        margin: 0;
+    }
+    .login_div{
+        position: static;
+        text-align: left;
+        margin-right: auto;
+    }
+    table, table td, table th{
+        border: 1px solid #FADAD8;
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%
+    }
+    table th{
+        padding: 4px 12px;
+        display: block;
+    }
+    table td{
+        padding: 4px 12px;
+        display: block;
+        min-height: 60px;
+    }
+    .button_div{
+        margin-top:40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .button{
+        margin:20px;
+        font-size: 40px;
+        color: #CE6D39;
+        background-color: #FADAD8;
+        width: 90%;
+    }
+    .send_button{
+        margin: 20px 0 20px 0;
+    }
+    .select_box{
+        margin: 20px 0 0 0;
+    }
+    .text_box{
+        margin:0;
+        width: 100%;
+    }
+    .text_title{
+        margin:0;
+        width: 100%;
+    }
+    .ok_button{
+        font-size: 16px;
+        padding: 18px 10px;
+    }
+    .profile{
+        width: 100%;
+        border-radius: 0;
+        flex-direction: column
+    }
+    .login{
+        max-width: none;
+        border: 1px solid#FADAD8;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .register_button{
+        margin: 20px;
+        font-size: 18px;
+        color: #CE6D39;
+        background-color: #FADAD8;
+        text-align: center;
+        border:1px solid rgb(206, 111, 59, 0.2);
+        border-radius: 8px;
+        display: block;
+    }
+    .login_text{
+        border:2px solid #FADAD8;
+        border-radius: 8px;
+        padding: 1em 0.5em;
+        margin:0 20px;
+        width: 80%;
+    }
+ }
