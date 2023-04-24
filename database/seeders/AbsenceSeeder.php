@@ -17,11 +17,11 @@ class AbsenceSeeder extends Seeder
         DB::table('absences')->insert([
             'reason_id' => '1',
             'other' => null,
-            'ab_date' => '2023-04-12',
+            'ab_date' => '2023-04-18',
             'user_id' => '3'
         ]);
         DB::table('absences')->insert([
-            'reason_id' => null,
+            'reason_id' => 4,
             'other' => 'おたより',
             'ab_date' => '2023-04-16',
             'user_id' => '3'
@@ -32,5 +32,6 @@ class AbsenceSeeder extends Seeder
             'ab_date' => '2023-04-19',
             'user_id' => '3'
         ]);
+        
     }
 }

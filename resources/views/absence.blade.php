@@ -35,19 +35,18 @@
     </form>
 <p class="title">連絡済みの欠席連絡</p>
     @foreach($absences as $absence)
-            <?php $reason = $absence->reason_id;
+            <?php $reason_id = $absence->reason_id;
                 $other = $absence->other;
-                
             ?>
         <div class="flex_div">
                 <p style = "background-color:#FADAD8;">日付</p>
                 <p>{{ $absence->ab_date }}</p>
-            @if($reason != 'null')
                 <p style = "background-color:#FADAD8;">理由</p>
+            @if($reason_id != null)
                 <p>{{ $absence->reason_name }}</p>
             @endif
-            @if( $other != 'null')
-                <p style = "background-color:#FADAD8;">その他</p>
+            <p style = "background-color:#FADAD8;">その他</p>
+            @if( $other != null)
                 <p>{{ $absence->other }}</p>
             @endif
                 <a href="{{route('delete_absence',$absence->id)}}"  onclick='return Checkdelete()' class="button">削除</a>
@@ -70,15 +69,15 @@
         @if(empty($days))
             @foreach($today_ab as $today)
             <div class="flex_div">
-                <?php $reason = $today->reason_id;
+                <?php $reason_id = $today->reason_id;
                     $other = $today->other;
                 ?>
                     <p>{{ $today->ab_date}}</p>
                     <p>{{ $today->child_name}}</p>
-                @if($reason != 'null')
+                @if($reason_id != null)
                     <p>{{ $today->reason_name}}</p>
                 @endif
-                @if( $other != 'null')
+                @if( $other != null)
                     <p>{{ $today->other}}</p>
                 @endif
             </div>
@@ -86,17 +85,28 @@
         @else
 
             @foreach($days as $day)
-                <?php $reason = $day->reason_id;
+            <p>検索日付{{ $day->ab_date }}</p>
+            <table>
+            <?php $reason_id = $day->reason_id;
                     $other = $day->other;
-                ?>
-                    <p>{{ $day->child_name }}</p>
-                @if($reason != 'null')
-                    <p>{{ $day->reason_name }}</p>
-                @endif
-                @if( $other != 'null')
-                    <p>{{ $day->other }}</p>
-                @endif
+            ?>
+                <tr>
+                <th style = "background-color:#FADAD8;">名前</th>
+                <th style = "background-color:#FADAD8;">理由</th>
+                <th style = "background-color:#FADAD8;">その他理由</th></tr>
+                
+                <tr>
+                    <td><p>{{ $day->child_name }}</p></td>
 
+                    @if($reason_id != null)
+                    <td><p>{{ $day->reason_name }}</p></td>
+                    @endif
+
+                    @if( $other != null)
+                    <td><p>{{ $day->other }}</p></td>
+                    @endif
+                </tr>
+            </table>
             @endforeach
         @endif
 @endcanany

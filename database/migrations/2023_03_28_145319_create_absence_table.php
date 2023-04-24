@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('absences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ab_date');
-            $table->bigInteger('reason_id')->unsigned()->foreignId('reason_id')->constrained('reasons')->nullable();
+            $table->bigInteger('reason_id')->unsigned()->foreignId('reason_id')->constrained('reasons');
             $table->string('other')->nullable();
             $table->bigInteger('user_id')->unsigned()->foreignId('user_id')->constrained('users');
             $table->timestamp('updated_at')->useCurrent()->nullable();

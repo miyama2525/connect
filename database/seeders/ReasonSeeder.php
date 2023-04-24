@@ -30,5 +30,9 @@ class ReasonSeeder extends Seeder
             'id' => 4,
             'reason_name' => 'おうちの用事',
         ]);
+        DB::table('reasons')->insert([
+            'id' => 5,
+            'reason_name' => 'その他',
+        ]);
     }
 }

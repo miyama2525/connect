@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class AbsenceController extends Controller
 {
@@ -28,12 +29,28 @@ class AbsenceController extends Controller
 
         $user = Auth::user();
         $absences = Absence::where('user_id', $user->id )
+            ->join('reasons',
+                'reasons.id',
+                '=',
+                'absences.reason_id'
+            )
             ->get();
-
         $now = now()->format('Y-m-d');
-        $today_ab = Absence::where('absences.ab_date', $now )
-                ->join('children','absences.user_id', '=','children.user_id')
-                ->get();
+        $query = DB::table('absences');
+
+        $today_ab = DB::table('absences');
+        $today_ab->where('absences.ab_date', $now);
+        $today_ab->join('children',
+                'children.user_id',
+                '=',
+                'absences.user_id'
+        );
+        $today_ab->join('reasons',
+                'reasons.id',
+                '=',
+                'absences.reason_id'
+        );
+        $today_ab = $today_ab->get();    
 
         return view('absence',[
             'today_ab' => $today_ab,
@@ -47,7 +64,7 @@ class AbsenceController extends Controller
         $user = Auth::user();
  
         $request->validate([
-            'reason_id' => ['nullable','string','required_without_all:other'],
+            'reason_id' => ['required','string'],
             'other'=>['nullable','string','required_without_all:reason_id'],
             'ab_date'=>['required', 'string'],
         ]);
@@ -63,11 +80,21 @@ class AbsenceController extends Controller
     }
     public function search(Request $request)
     {
-        $day = $request->where_date;
-        $days = Absence::where('absences.ab_date', $day )
-         ->join('children','absences.user_id', '=','children.user_id')
-         ->join('reasons','reasons.id','=','absences.reason_id')
-         ->get();
+        $where_date = $request->where_date;
+
+        $day = DB::table('absences');
+        $day->where('absences.ab_date', $where_date);
+        $day->join('children',
+                'children.user_id',
+                '=',
+                'absences.user_id'
+        );
+        $day->join('reasons',
+                'reasons.id',
+                '=',
+                'absences.reason_id'
+        );
+        $days = $day->get();
 
         return view('absence', [
             'days' => $days,

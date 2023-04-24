@@ -35,26 +35,6 @@ class EmergencyTableSeeder extends Seeder
                 ],
             );
             
-            DB::table('emergencies')->insert(
-                [
-                    'title'=>'テストタイトル - 4',
-                    'body' =>"テストお知らせ\nテストお知らせ\nテストお知らせ - 4",
-                ],
-            );
-            
-            DB::table('emergencies')->insert(
-                [
-                    'title'=>'テストタイトル - 5',
-                    'body' =>"テストお知らせ\nテストお知らせ\nテストお知らせ - 5",
-                ],
-            );
-
-            DB::table('emergencies')->insert(
-                [
-                    'title'=>'テストタイトル - 6',
-                    'body' =>"テストお知らせ\nテストお知らせ\nテストお知らせ - 6",
-                ],
-            );
             
     }
 }

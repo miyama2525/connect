@@ -17,8 +17,22 @@ class EmergencyReadSeeder extends Seeder
         
         DB::table('emergency_reads')->insert(
             [
-                'user_id' => 1,
+                'user_id' => 3,
                 'emergency_id' => 1,
+            ],
+        );
+
+        DB::table('emergency_reads')->insert(
+            [
+                'user_id' => 3,
+                'emergency_id' => 2,
+            ],
+        );
+
+        DB::table('emergency_reads')->insert(
+            [
+                'user_id' => 3,
+                'emergency_id' => 3,
             ],
         );
     }

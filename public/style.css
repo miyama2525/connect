@@ -117,6 +117,7 @@ input[type="password"]{
     margin: 0 20px;
 }
 .send_div{
+    width: 100%;
     display: flex;
     justify-content: end;
     margin-right:20px;

@@ -33,6 +33,15 @@
     <div>
         <table style="margin-top:20px;">
         @foreach($children as $child)
+        <?php $grade =[
+            '未満児(１歳)',
+            '未満児(２歳)',
+            '年少',
+            '年中',
+            '年長',
+        ];
+        $s_grade = ($child->grade_id)-1;
+        ?>
             <tr>
                 <th>名前</th>
                 <th>誕生日</th>
@@ -42,7 +51,7 @@
             <tr>
                 <td>{{ $child->child_name }}</td>
                 <td>{{ $child->birthday }}</td>
-                <td>{{ $child->grade }}</td>
+                <td><?php echo $grade[$s_grade];?></td>
                 <td><a href="{{ route('search_guardian',$child->user_id) }}" class = "send_button" style="margin:0;padding:0;">保護者情報</a></td>
             </tr>
         @endforeach

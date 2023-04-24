@@ -25,7 +25,7 @@
             <!-- 内容 -->
             <div class="mt-4">
                 <p>内容</p>
-                <input id="body" class="text_box" type="text" name="body" :value="old('body')" />
+                <textarea id="body" class="text_box" type="text" name="body" >{{ old('body') }}</textarea>
                 <x-input-error :messages="$errors->get('body')" class="mt-2" />
             </div>
             
@@ -33,15 +33,15 @@
         </div>
     </form>
 
-    <?php $i = 1;?>
     @foreach($emergencies as $emergency)
-        <div class ="send_div" style ="align-items: flex-start;
-    flex-direction: column;">
-            <p class = "text"><?php echo $i; ?>
-            {{$emergency->title}}</p>
-            <p>{{$emergency->body}}</p><a href="{{route('delete_emergency',$emergency->id)}}" class="send_button" onclick='return Checkdelete()'>削除</a>
+        <div style ="align-items: flex-start;
+            flex-direction: column;">
+            <p class = "text">{{$emergency->created_at}}</p>
+            <p>{{$emergency->title}}</p>
+            <p>{{$emergency->body}}</p>
+                <a href="{{route('delete_emergency',$emergency->id)}}" class="send_button" onclick='return Checkdelete()' >削除</a>
+
         </div>
-        <?php $i++ ?>
     @endforeach
 
 @endcanany
@@ -50,16 +50,17 @@
     <div class = "title">
         <p>緊急連絡</p>
     </div>
-    <?php $i = 1;?>
 
     @foreach($emergencies as $emergency)
     <div class = "flex_div">
-        <p style="width:50%"><?php echo $i; ?>{{$emergency->title}}</p>
+        <p class = "text">{{$emergency->created_at}}</p>
+        <p style="width:50%">{{$emergency->title}}</p>
         <p style="width:50%">{{$emergency->body}}</p>
-        <a href="{{ route('read_emergency',$emergency->id) }}" class="ok_button" >内容を既読</a>
+        @if($emergency->read == 0 )
+        <a href="{{ route('read_emergency',$emergency->emergency_id) }}" class="ok_button" >内容を既読</a>
+        @endif
         <br>
     </div>
-    <?php $i++ ?>
     @endforeach
 
 @endcan

@@ -26,5 +26,10 @@ class EmergencyRead extends Model
     protected $fillable = [
         'user_id',
         'emergency_id',
+        'read',
     ];
+
+    protected $casts = [
+        'emergency_id' => 'integer',
+      ];
 }

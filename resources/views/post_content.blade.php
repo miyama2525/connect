@@ -38,13 +38,13 @@
             <!-- 内容 -->
             <div class="mt-4">
             <p>内容</p>
-                <input id="content" class="text_box" type="textarea" name="content" :value="old('content')" />
+                <textarea id="content" class="text_box" type="textarea" name="content">{{ old('content') }}</textarea>
                 <x-input-error :messages="$errors->get('content')" class="mt-2" />
             </div>
             <!-- その他 -->
             <div class="mt-4">
             <p>その他</p>
-                <input id="other" class="text_box" type="textarea" name="other" :value="old('other')" />
+                <textarea id="other" class="text_box" type="textarea" name="other">{{ old('other') }}</textarea>
                 <x-input-error :messages="$errors->get('other')" class="mt-2" />
             </div>
             <div class ="send_div">

@@ -20,10 +20,17 @@ class EmergencyController extends Controller
     //
     public function create()
     {
-        $user = Auth::user();
-        $emergency = Emergency::orderBy('id','desc');
-        $emergencies = $emergency->get();
-        return view('emergency', compact('emergencies'));
+        $user = Auth::user();        
+        $emergencies = Emergency::where('user_id',$user->id)
+            ->join('emergency_reads',
+                'emergencies.id',
+                '=',
+                'emergency_reads.emergency_id'
+            )
+            ->get();
+        return view('emergency', [
+            'emergencies'=>$emergencies,
+        ]);
     }
 
     public function read(Request $request, $id)
@@ -31,31 +38,41 @@ class EmergencyController extends Controller
         //未読を既読に
         $user = Auth::user();
         $emergency_id = $id;
-        $emergency_read = EmergencyRead::where('user_id', $user->id)
+        $emergency_read = EmergencyRead::where('user_id',$user->id)
             ->where('emergency_id', $emergency_id)
             ->where('read', false)
-            ->first();
+            ->get();
 
-        if($emergency_read == null) 
+        if(!empty($emergency_read)) 
         {
-            $emergency_read = EmergencyRead::insert([
+            $read = EmergencyRead::where('user_id', $user->id)
+                ->where('emergency_id', $emergency_id)
+                ->update([
                 'user_id' => $user->id,
                 'emergency_id' => $emergency_id,
                 'read'=> true,
-            ]);
-        }else{
+                ]);
 
-            $read = EmergencyRead::where('user_id', $user->id)->update([
-                'user_id' => $user->id,
-                'emergency_id' => $emergency_id,
-                'read'=> true,
-            ]);
-
+            $emergencies = Emergency::where('user_id',$user->id)
+            ->join('emergency_reads',
+                'emergencies.id',
+                '=',
+                'emergency_reads.emergency_id'
+            )
+            ->get();
+            return view('emergency', compact('emergencies'));
         }
-
-        $emergency = Emergency::orderBy('id','desc');
-        $emergencies = $emergency->get();
-        return view('emergency', compact('emergencies'));
+        else{
+            echo "既読処理できませんでした。";
+            $emergencies = Emergency::where('user_id',$user->id)
+            ->join('emergency_reads',
+                'emergencies.id',
+                '=',
+                'emergency_reads.emergency_id'
+            )
+            ->get();
+            return view('emergency', compact('emergencies'));
+        }
     }
 
     public function search(Request $request)
@@ -65,7 +82,6 @@ class EmergencyController extends Controller
         //上のwhereHas()でリレーションシップ先で絞り込みをしたデータだけを取得する
             $query->where('user_id', $user->id)
                 ->where('read', false);
-
         });
     }
 

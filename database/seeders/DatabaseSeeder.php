@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AbsenceSeeder::class);
         $this->call(GradeSeeder::class);
         $this->call(ReasonSeeder::class);
+        $this->call(ChildSeeder::class);
     }
 }
