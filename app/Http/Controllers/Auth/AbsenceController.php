@@ -80,10 +80,10 @@ class AbsenceController extends Controller
     }
     public function search(Request $request)
     {
-        $where_date = $request->where_date;
+        $ab = $request->where_date;
 
         $day = DB::table('absences');
-        $day->where('absences.ab_date', $where_date);
+        $day->where('absences.ab_date', $ab);
         $day->join('children',
                 'children.user_id',
                 '=',
@@ -98,6 +98,7 @@ class AbsenceController extends Controller
 
         return view('absence', [
             'days' => $days,
+            'ab' => $ab,
         ]);
     }
 

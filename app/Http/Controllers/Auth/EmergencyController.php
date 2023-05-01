@@ -27,9 +27,12 @@ class EmergencyController extends Controller
                 '=',
                 'emergency_reads.emergency_id'
             )
+            ->orderBy('emergencies.created_at','desc')
             ->get();
+        $T_emergencies = Emergency::all();
         return view('emergency', [
             'emergencies'=>$emergencies,
+            'T_emergencies' =>$T_emergencies,
         ]);
     }
 

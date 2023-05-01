@@ -11,7 +11,7 @@
 </head>
 <body>
 
-@canany(['teacher','admin'])
+@canany(['teacher'])
     <form method="POST" action="{{ route('store_emergency') }}">
         @csrf
         <div>
@@ -33,13 +33,13 @@
         </div>
     </form>
 
-    @foreach($emergencies as $emergency)
+    @foreach($T_emergencies as $emergency)
         <div style ="align-items: flex-start;
             flex-direction: column;">
             <p class = "text">{{$emergency->created_at}}</p>
             <p>{{$emergency->title}}</p>
             <p>{{$emergency->body}}</p>
-                <a href="{{route('delete_emergency',$emergency->id)}}" class="send_button" onclick='return Checkdelete()' >削除</a>
+            <a href="{{route('delete_emergency',$emergency->id)}}" class="send_button" onclick='return Checkdelete()' >削除</a>
 
         </div>
     @endforeach

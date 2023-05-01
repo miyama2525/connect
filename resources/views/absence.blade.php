@@ -54,7 +54,7 @@
     @endforeach
 @endcan
 
-@canany(['teacher','admin'])
+@canany(['teacher'])
     <form  method="post" action="{{ route('search_absence') }}">
         @csrf
         <div class="form-group">
@@ -67,26 +67,35 @@
         </div>
     </form>
         @if(empty($days))
+        <table>
+        <p>本日の欠席</p>
             @foreach($today_ab as $today)
-            <div class="flex_div">
-                <?php $reason_id = $today->reason_id;
+            <?php $reason_id = $today->reason_id;
                     $other = $today->other;
-                ?>
-                    <p>{{ $today->ab_date}}</p>
-                    <p>{{ $today->child_name}}</p>
-                @if($reason_id != null)
-                    <p>{{ $today->reason_name}}</p>
-                @endif
-                @if( $other != null)
-                    <p>{{ $today->other}}</p>
-                @endif
-            </div>
-            @endforeach
-        @else
+            ?>
+                <tr>
+                <th style = "background-color:#FADAD8;">名前</th>
+                <th style = "background-color:#FADAD8;">理由</th>
+                <th style = "background-color:#FADAD8;">その他理由</th></tr>
+                
+                <tr>
+                    <td><p>{{ $today->child_name}}</p></td>
 
-            @foreach($days as $day)
-            <p>検索日付{{ $day->ab_date }}</p>
+                    @if($reason_id != null)
+                    <td><p>{{ $today->reason_name}}</p></td>
+                    @endif
+
+                    @if( $other != null)
+                    <td><p>{{ $today->other}}</p></td>
+                    @endif
+                </tr>
+                @endforeach
+            </table>
+        @else
+        <p>検索日付{{ $ab }}</p>
+            
             <table>
+            @foreach($days as $day)
             <?php $reason_id = $day->reason_id;
                     $other = $day->other;
             ?>
@@ -106,8 +115,9 @@
                     <td><p>{{ $day->other }}</p></td>
                     @endif
                 </tr>
+                @endforeach
             </table>
-            @endforeach
+            
         @endif
 @endcanany
 
